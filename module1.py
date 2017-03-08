@@ -21,9 +21,8 @@ def running():
             
 
         except KeyboardInterrupt as erreur:
-            bot.motorRun(M1,0);
-            bot.motorRun(M2,0);
-            return
+            bot.stop('/dev/ttyUSB0')
+            sys.exit(0)
 
     return
 
@@ -31,7 +30,7 @@ def running():
 if __name__ == '__main__':
     bot = MegaPi()
     bot.start('/dev/ttyUSB0')
-    bot.motorRun(M1,0);
+    #bot.motorRun(M1,0);
     sleep(1);
     
     running()
