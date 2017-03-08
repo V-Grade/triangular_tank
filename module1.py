@@ -5,7 +5,8 @@ import signal
 import sys
 
 def onRead(v):
-	print "distance:"+str(v)+" cm";
+    print ''
+	#print "distance:"+str(v)+" cm";
 
 
 def running():
@@ -20,6 +21,8 @@ def running():
             
 
         except KeyboardInterrupt as erreur:
+            bot.motorRun(M1,0);
+            bot.motorRun(M2,0);
             return
 
     return
