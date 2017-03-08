@@ -7,22 +7,33 @@ import sys
 def onRead(v):
 	print "distance:"+str(v)+" cm";
 
-def signal_handler(signal, frame):
-        print('You pressed Ctrl+C!')
-        sys.exit(0)
-signal.signal(signal.SIGINT, signal_handler)
-print('Press Ctrl+C')
-signal.pause()
+
+def running():
+    while 1:
+        try:    
+
+            sleep(0.5)
+            bot.motorRun(M1,200);
+            bot.motorRun(M2,-200);
+            distance = bot.ultrasonicSensorRead(7);
+            print distance
+            
+
+        except KeyboardInterrupt as erreur:
+            return
+
+    return
 
 
 if __name__ == '__main__':
-        bot = MegaPi()
-        bot.start('/dev/ttyUSB0')
-        bot.motorRun(M1,0);
-        sleep(1);
-        while 1:
-                bot.motorRun(M1,200);
-                bot.motorRun(M2,-200);
-                bot.ultrasonicSensorRead(7,onRead);
+    bot = MegaPi()
+    bot.start('/dev/ttyUSB0')
+    bot.motorRun(M1,0);
+    sleep(1);
+    
+    running()
+
+
+
 
 
