@@ -30,7 +30,7 @@ def running():
                 bot.motorRun(M1,0);
                 bot.motorRun(M2,0);
                 bot.ultrasonicSensorRead(7,onRead);
-              	print distance
+                print distance
 
            
 
