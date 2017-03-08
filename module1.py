@@ -5,10 +5,11 @@ import signal
 import sys
 
 
-
+distance = 0
 
 
 def onRead(v):
+    global distance
     distance = v
 	#print "distance:"+str(v)+" cm";
 
@@ -30,15 +31,16 @@ if __name__ == '__main__':
     bot.start('/dev/ttyUSB0')
     print 'initialisation'
     sleep(1);
-    distance = 0
+    
     try:
         running()
         
     except KeyboardInterrupt:
         print erreur
-        bot.motorRun(M1,0);
-        bot.motorRun(M2,0); 
-        sys.exit(0)
+    
+    bot.motorRun(M1,0);
+    bot.motorRun(M2,0); 
+    sys.exit(0)
 
 
 
