@@ -21,10 +21,12 @@ def running():
             
 
         except KeyboardInterrupt as erreur:
-            bot.motorRun(M1,0);
-            bot.motorRun(M2,0);          
-            sys.exit(0)
+            print 'ctrl+c'
+            break
 
+    bot.motorRun(M1,0);
+    bot.motorRun(M2,0);          
+    sys.exit(0)
     return
 
 
