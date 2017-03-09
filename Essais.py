@@ -14,9 +14,6 @@ coefRotation = 0.5 #reduction de la vitesse pdt la rotation
 MoteurAvant = M1
 MoteurArriere = M2
 
-UtraSonicFrontal = 7
-UtraSonicLateral = 4
-
 #temps
 temps90deg = 0.200
 
