@@ -20,6 +20,14 @@ temps90deg = 0.200
 bot = MegaPi()
 bot.start('/dev/ttyUSB0')
 
+def signal_handler(signal, frame):
+    print('You pressed Ctrl+C!')
+    bot.motorRun(M1,0);
+    bot.motorRun(M2,0);
+    sleep(0.1)
+    bot.exiting=True
+quit()
+
 #tourner de 90? a gauche
 def turnLeft():
     bot.motorRun(MoteurAvant,motorSpeed*coefRotation);
