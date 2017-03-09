@@ -1,4 +1,23 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
 
+from megapi import *
+import signal
+import sys
+
+# vitesses moteur
+motorSpeed = 200 
+coefCorection = 0.0 #correction de trajectiore
+coefRotation = 0.5 #reduction de la vitesse pdt la rotation
+
+#capteurs
+MoteurAvant = M1
+MoteurArriere = M2
+
+UtraSonicFrontal = 7
+UtraSonicLateral = 4
+
+#temps
 temps90deg = 1250
 
 #distances
