@@ -5,32 +5,58 @@ import signal
 import sys
 
 
-distance = 0
+frontDistance = 0
+sideDistance = 0
 
 
-def onRead(v):
-    global distance
-    distance = v
+def onReadFront(v):
+    global frontDistance
+    frontDistance = v
 	#print "distance:"+str(v)+" cm";
+
+def onReadSide(u):
+    global sideDistance
+    sideDistance = u
+
+
+def signal_handler(signal, frame):
+    print('You pressed Ctrl+C!')
+    bot.motorRun(M1,0);
+    bot.motorRun(M2,0);
+    sleep(0.05)
+    bot.exiting=True
+    quit()
 
 
 def running():
     
         print("Press CTRL-C to stop.")
         while 1:
-            bot.ultrasonicSensorRead(7,onRead);
-            print distance
-            if distance > 40:
-                bot.motorRun(M1,200);
-                bot.motorRun(M2,-200);
-                bot.ultrasonicSensorRead(7,onRead);
-                print distance
+	    
+            bot.ultrasonicSensorRead(7,onReadFront);
+	    bot.ultrasonicSensorRead(4,onReadSide);
+	    print ('UltrasonicSensors ON')
+	    signal.signal(signal.SIGINT, signal_handler)
+
+            print frontDistance
+	    print sideDistance
+            if frontDistance > 20:
+                bot.motorRun(M1,150);
+                bot.motorRun(M2,-150);
+		sleep(0.1);
             
-            else:
+            elif frontDistance < 20 and sideDistance > 20: 
                 bot.motorRun(M1,0);
                 bot.motorRun(M2,0);
-                bot.ultrasonicSensorRead(7,onRead);
-                print distance
+	        bot.motorRun(M1,-100);
+                bot.motorRun(M2,-100);
+		sleep(0.1);
+	    elif frontDistance < 20 and sideDistance < 20:
+		bot.motorRun(M1,0);
+                bot.motorRun(M2,0); 
+		bot.motorRun(M1,100);
+                bot.motorRun(M2,100);
+		sleep(0.1);
 
            
 
@@ -41,6 +67,9 @@ if __name__ == '__main__':
     bot.start('/dev/ttyUSB0')
     print 'initialisation'
     sleep(1);
+    bot.motorRun(M1,0);
+    bot.motorRun(M2,0);
+    print 'motors on run'
     
     try:
         running()
@@ -49,5 +78,5 @@ if __name__ == '__main__':
         print erreur
     
     bot.motorRun(M1,0);
-    bot.motorRun(M2,0); 
+    bot.motorRun(M2,0);
     sys.exit(0)
