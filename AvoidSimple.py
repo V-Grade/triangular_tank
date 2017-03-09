@@ -35,9 +35,7 @@ def signal_handler(signal, frame):
     bot.exiting=True
     quit()
 
-print('init')
-bot = MegaPi()
-bot.start('/dev/ttyUSB0')
+
 
 #r?cup?ration de la valeur de distance front
 def onReadFront(v):
@@ -114,7 +112,9 @@ def Tourne():
 
 
 if __name__ == '__main__':
-
+    print('init')
+    bot = MegaPi()
+    bot.start('/dev/ttyUSB0')
     print 'initialisation'
     sleep(1)
     print 'init done'
