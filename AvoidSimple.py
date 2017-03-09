@@ -6,7 +6,7 @@ import signal
 import sys
 
 # vitesses moteur
-motorSpeed = 200 
+motorSpeed = 50 
 coefCorection = 0.0 #correction de trajectiore
 coefRotation = 0.5 #reduction de la vitesse pdt la rotation
 
