@@ -46,6 +46,7 @@ def ReadUltra():
     bot.ultrasonicSensorRead(7,onReadFront);
     print 'lateral'
     bot.ultrasonicSensorRead(4,onReadLateral);
+    sleep(0.1)
 
 #r?cup?ration de la valeur de distance front
 def onReadFront(v):
@@ -125,11 +126,17 @@ def Tourne():
 if __name__ == '__main__':
 
     print 'initialisation'
-    while not bot.exiting:
+    sleep(1)
+    print 'init done'
+    while 1:
         #lecture des capteurs de distances
         print 'ReadUltra'
-        ReadUltra()
-    
+        bot.ultrasonicSensorRead(7,onReadFront);
+        sleep(0.1)
+        print 'lateral'
+        bot.ultrasonicSensorRead(4,onReadLateral);
+        sleep(0.1)
+
         # rien a droite lord du d?placement vers l'Ouest
         if (not obstacleLateral() and direction == 4 ):
             avance()
