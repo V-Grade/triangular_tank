@@ -51,8 +51,9 @@ def ReadUltra():
 #r?cup?ration de la valeur de distance front
 def onReadFront(v):
     global distanceFront
-    distanceFront = v
     print 'front :' + distanceFront
+    distanceFront = v
+    
 
 #r?cup?ration de la valeur de distance Lat?rale
 def onReadLateral(v):
