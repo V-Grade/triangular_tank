@@ -39,7 +39,7 @@ def signal_handler(signal, frame):
 bot = MegaPi()
 bot.start('/dev/ttyUSB0')
 
-signal.signal(signal.SIGINT, signal_handler)
+
 #signal.pause()
 
 
@@ -52,16 +52,17 @@ def ReadUltra():
 def onReadFront(v):
     global distanceFront
     distanceFront = v
-    print 'front' + distanceFront
+    print 'front :' + distanceFront
 
 #r?cup?ration de la valeur de distance Lat?rale
 def onReadLateral(v):
     global distanceLateral
     distanceLateral = v
-    print 'lateral' + distanceLateral
+    print 'lateral :' + distanceLateral
 
 #tourner de 90? a gauche
 def turnLeft():
+    print 'gauche'
     bot.motorRun(MoteurAvant,motorSpeed*coefRotation);
     bot.motorRun(MoteurArriere,motorSpeed*coefRotation);
     sleep(temps90deg)
@@ -69,6 +70,7 @@ def turnLeft():
 
 #tourner de 90? a droite
 def turnRight():
+    print 'droite'
     bot.motorRun(MoteurAvant,-motorSpeed*coefRotation);
     bot.motorRun(MoteurArriere,-motorSpeed*coefRotation);
     sleep(temps90deg)
@@ -77,16 +79,17 @@ def turnRight():
 #avancer tout droit
 def avance(s=0.050):
     if not obstacleFront() :
-        bot.motorRun(M1,motorSpeed+coefCorection);
-        bot.motorRun(M2,-(motorSpeed-coefCorection));
+        bot.motorRun(MoteurAvant,motorSpeed+coefCorection);
+        bot.motorRun(MoteurArriere,-(motorSpeed-coefCorection));
         sleep(s)
     else:
         stop()
 
 #stop
 def stop():
-    bot.motorRun(M1,0);
-    bot.motorRun(M2,-(0));
+    print 'stop'
+    bot.motorRun(MoteurAvant,0);
+    bot.motorRun(MoteurArriere,-(0));
 
 
 
@@ -137,4 +140,6 @@ if __name__ == '__main__':
         # sinon
         else:
             avance()
+
+        signal.signal(signal.SIGINT, signal_handler)
 
