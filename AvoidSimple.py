@@ -39,19 +39,9 @@ print('init')
 bot = MegaPi()
 bot.start('/dev/ttyUSB0')
 
-#lecture des capteurs ultrasonic
-def ReadUltra():
-    print 'reading'
-    print 'front'
-    bot.ultrasonicSensorRead(7,onReadFront);
-    print 'lateral'
-    bot.ultrasonicSensorRead(4,onReadLateral);
-    sleep(0.1)
-
 #r?cup?ration de la valeur de distance front
 def onReadFront(v):
     global distanceFront
-    print 'front :' + distanceFront
     distanceFront = v
     
 
@@ -59,7 +49,6 @@ def onReadFront(v):
 def onReadLateral(v):
     global distanceLateral
     distanceLateral = v
-    print 'lateral :' + distanceLateral
 
 #tourner de 90? a gauche
 def turnLeft():
