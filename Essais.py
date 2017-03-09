@@ -17,17 +17,6 @@ MoteurArriere = M2
 #temps
 temps90deg = 0.200
 
-bot = MegaPi()
-bot.start('/dev/ttyUSB0')
-
-def signal_handler(signal, frame):
-    print('You pressed Ctrl+C!')
-    bot.motorRun(M1,0);
-    bot.motorRun(M2,0);
-    sleep(0.1)
-    bot.exiting=True
-    quit()
-
 #tourner de 90? a gauche
 def turnLeft():
     bot.motorRun(MoteurAvant,motorSpeed*coefRotation);
@@ -48,8 +37,10 @@ def stop():
 
 if __name__ == '__main__':
     
-
     print 'initialisation'
+    bot = MegaPi()
+    bot.start('/dev/ttyUSB0')
+
     sleep(1);
     
     print 'tourne a gauche'
@@ -64,3 +55,9 @@ if __name__ == '__main__':
     signal.signal(signal.SIGINT, signal_handler)
 
     sleep(2)
+    
+    bot.motorRun(M1,0);
+    bot.motorRun(M2,0);
+    sleep(0.1)
+    bot.exiting=True
+    quit()
