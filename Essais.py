@@ -26,7 +26,7 @@ def signal_handler(signal, frame):
     bot.motorRun(M2,0);
     sleep(0.1)
     bot.exiting=True
-quit()
+    quit()
 
 #tourner de 90? a gauche
 def turnLeft():
@@ -59,5 +59,8 @@ if __name__ == '__main__':
 
     print 'tourne a droite'
     turnRight()
+    
+    print 'signal'
+    signal.signal(signal.SIGINT, signal_handler)
 
     sleep(2)
