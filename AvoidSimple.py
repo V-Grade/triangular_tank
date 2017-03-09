@@ -15,7 +15,7 @@ MoteurAvant = M1
 MoteurArriere = M2
 
 UtraSonicFrontal = 7
-UtraSonicLateral = 6
+UtraSonicLateral = 4
 
 #temps
 temps90deg = 1250
@@ -27,8 +27,14 @@ distanceLateral = 0
 #Directions de 1 a 4 dans le sens des aiguilles d'une montre
 direction = 1 
 
-def signal_handler(signal, frame):    print('You pressed Ctrl+C!')    bot.motorRun(M1,0);    bot.motorRun(M2,0);    quit()
-signal.signal(signal.SIGINT, signal_handler)signal.pause()
+def signal_handler(signal, frame):
+    print('You pressed Ctrl+C!')
+    bot.motorRun(M1,0);
+    bot.motorRun(M2,0);
+    quit()
+
+signal.signal(signal.SIGINT, signal_handler)
+signal.pause()
 
 
 #lecture des capteurs ultrasonic
@@ -36,24 +42,24 @@ def ReadUltra():
     bot.ultrasonicSensorRead(UtraSonicFrontal,onReadFront);
     bot.ultrasonicSensorRead(UtraSonicLateral,onReadLateral);
 
-#récupération de la valeur de distance front
+#r?cup?ration de la valeur de distance front
 def onReadFront(v):
     global distanceFront
     distanceFront = v
 
-#récupération de la valeur de distance Latérale
+#r?cup?ration de la valeur de distance Lat?rale
 def onReadLateral(v):
     global distanceLateral
     distanceLateral = v
 
-#tourner de 90° a gauche
+#tourner de 90? a gauche
 def turnLeft():
     bot.motorRun(M1,motorSpeed*coefRotation);
     bot.motorRun(M2,motorSpeed*coefRotation);
     sleep(temps90deg)
     changeDirection(-1)
 
-#tourner de 90° a droite
+#tourner de 90? a droite
 def turnRight():
     bot.motorRun(M1,-motorSpeed*coefRotation);
     bot.motorRun(M2,-motorSpeed*coefRotation);
@@ -83,11 +89,11 @@ def changeDirection(d):
     if (direction > 4): direction = 1
     if (direction < 1): direction = 4
 
-#détection d'obstacle frontale
+#d?tection d'obstacle frontale
 def obstacleFront():
     return (distanceFront < 40) 
 
-#détection d'obstacle latérale
+#d?tection d'obstacle lat?rale
 def obstacleLateral():
     return (distanceLateral < 40)
 
@@ -115,7 +121,7 @@ if __name__ == '__main__':
         #lecture des capteurs de distances
         ReadUltra()
 
-        # rien a droite lord du déplacement vers l'Ouest
+        # rien a droite lord du d?placement vers l'Ouest
         if (not obstacleLateral() and direction == 4 ):
             avance(0.5)
             turnRight()

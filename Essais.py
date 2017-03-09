@@ -1,17 +1,4 @@
-#!/usr/bin/env python
-# -*- coding: utf-8 -*-
 
-from megapi import *
-import signal
-import sys
-
-
-# vitesses moteur
-motorSpeed = 200 
-coefCorection = 0.0 #correction de trajectiore
-coefRotation = 0.5 #reduction de la vitesse pdt la rotation
-
-#temps
 temps90deg = 1250
 
 #distances
@@ -23,35 +10,37 @@ direction = 1
 
 def signal_handler(signal, frame):
     print('You pressed Ctrl+C!')
-    stop()
+    bot.motorRun(M1,0);
+    bot.motorRun(M2,0);
     quit()
 
 signal.signal(signal.SIGINT, signal_handler)
 signal.pause()
+
 
 #lecture des capteurs ultrasonic
 def ReadUltra():
     bot.ultrasonicSensorRead(UtraSonicFrontal,onReadFront);
     bot.ultrasonicSensorRead(UtraSonicLateral,onReadLateral);
 
-#récupération de la valeur de distance front
+#r?cup?ration de la valeur de distance front
 def onReadFront(v):
     global distanceFront
     distanceFront = v
 
-#récupération de la valeur de distance Latérale
+#r?cup?ration de la valeur de distance Lat?rale
 def onReadLateral(v):
     global distanceLateral
     distanceLateral = v
 
-#tourner de 90° a gauche
+#tourner de 90? a gauche
 def turnLeft():
     bot.motorRun(M1,motorSpeed*coefRotation);
     bot.motorRun(M2,motorSpeed*coefRotation);
     sleep(temps90deg)
     changeDirection(-1)
 
-#tourner de 90° a droite
+#tourner de 90? a droite
 def turnRight():
     bot.motorRun(M1,-motorSpeed*coefRotation);
     bot.motorRun(M2,-motorSpeed*coefRotation);
@@ -72,6 +61,8 @@ def stop():
     bot.motorRun(M1,0);
     bot.motorRun(M2,-(0));
 
+
+
 #changement de direction
 def changeDirection(d):
     global direction
@@ -79,11 +70,11 @@ def changeDirection(d):
     if (direction > 4): direction = 1
     if (direction < 1): direction = 4
 
-#détection d'obstacle frontale
+#d?tection d'obstacle frontale
 def obstacleFront():
     return (distanceFront < 40) 
 
-#détection d'obstacle latérale
+#d?tection d'obstacle lat?rale
 def obstacleLateral():
     return (distanceLateral < 40)
 
