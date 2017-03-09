@@ -31,10 +31,11 @@ def signal_handler(signal, frame):
     print('You pressed Ctrl+C!')
     bot.motorRun(M1,0);
     bot.motorRun(M2,0);
+    bot.exiting=True
     quit()
 
-
-signal.pause()
+signal.signal(signal.SIGINT, signal_handler)
+#signal.pause()
 
 
 #lecture des capteurs ultrasonic
@@ -113,7 +114,7 @@ def Tourne():
 
 
 if __name__ == '__main__':
-    signal.signal(signal.SIGINT, signal_handler)
+    
     bot = MegaPi()
     bot.start('/dev/ttyUSB0')
     print 'initialisation'
