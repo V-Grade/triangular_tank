@@ -33,7 +33,7 @@ def signal_handler(signal, frame):
     bot.motorRun(M2,0);
     quit()
 
-signal.signal(signal.SIGINT, signal_handler)
+
 signal.pause()
 
 
@@ -113,11 +113,12 @@ def Tourne():
 
 
 if __name__ == '__main__':
+    signal.signal(signal.SIGINT, signal_handler)
     bot = MegaPi()
     bot.start('/dev/ttyUSB0')
     print 'initialisation'
     sleep(1);
-
+    
     print 'lecture des capteurs de distances'
     ReadUltra()
     print distanceFront
