@@ -77,7 +77,7 @@ def turnRight():
     changeDirection(1)
 
 #avancer tout droit
-def avance(s=0.050):
+def avance(s=0.1):
     if not obstacleFront() :
         bot.motorRun(MoteurAvant,motorSpeed+coefCorection);
         bot.motorRun(MoteurArriere,-(motorSpeed-coefCorection));
@@ -124,15 +124,15 @@ def Tourne():
 
 
 if __name__ == '__main__':
+
     print 'initialisation'
-    sleep(1);
     while 1:
         #lecture des capteurs de distances
         ReadUltra()
 
         # rien a droite lord du d?placement vers l'Ouest
         if (not obstacleLateral() and direction == 4 ):
-            avance(0.5)
+            avance()
             turnRight()
         # qq chose devant
         elif (obstacleFront()):
