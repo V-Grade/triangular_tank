@@ -18,7 +18,7 @@ UtraSonicFrontal = 7
 UtraSonicLateral = 4
 
 #temps
-temps90deg = 1250
+temps90deg = 0.500
 
 #distances
 distanceFront = 0
@@ -52,23 +52,25 @@ def ReadUltra():
 def onReadFront(v):
     global distanceFront
     distanceFront = v
+    print 'front' + distanceFront
 
 #r?cup?ration de la valeur de distance Lat?rale
 def onReadLateral(v):
     global distanceLateral
     distanceLateral = v
+    print 'lateral' + distanceLateral
 
 #tourner de 90? a gauche
 def turnLeft():
-    bot.motorRun(M1,motorSpeed*coefRotation);
-    bot.motorRun(M2,motorSpeed*coefRotation);
+    bot.motorRun(MoteurAvant,motorSpeed*coefRotation);
+    bot.motorRun(MoteurArriere,motorSpeed*coefRotation);
     sleep(temps90deg)
     changeDirection(-1)
 
 #tourner de 90? a droite
 def turnRight():
-    bot.motorRun(M1,-motorSpeed*coefRotation);
-    bot.motorRun(M2,-motorSpeed*coefRotation);
+    bot.motorRun(MoteurAvant,-motorSpeed*coefRotation);
+    bot.motorRun(MoteurArriere,-motorSpeed*coefRotation);
     sleep(temps90deg)
     changeDirection(1)
 

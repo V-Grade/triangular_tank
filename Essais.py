@@ -18,7 +18,7 @@ UtraSonicFrontal = 7
 UtraSonicLateral = 4
 
 #temps
-temps90deg = 1250
+temps90deg = 0.750
 
 #distances
 distanceFront = 0
@@ -29,8 +29,8 @@ direction = 1
 
 def signal_handler(signal, frame):
     print('You pressed Ctrl+C!')
-    bot.motorRun(M1,0);
-    bot.motorRun(M2,0);
+    bot.motorRun(MoteurAvant,0);
+    bot.motorRun(MoteurArriere,0);
     sleep(0.05)
     bot.exiting=True
     quit()
@@ -60,31 +60,31 @@ def onReadLateral(v):
 
 #tourner de 90? a gauche
 def turnLeft():
-    bot.motorRun(M1,motorSpeed*coefRotation);
-    bot.motorRun(M2,motorSpeed*coefRotation);
+    bot.motorRun(MoteurAvant,motorSpeed*coefRotation);
+    bot.motorRun(MoteurArriere,motorSpeed*coefRotation);
     sleep(temps90deg)
     changeDirection(-1)
 
 #tourner de 90? a droite
 def turnRight():
-    bot.motorRun(M1,-motorSpeed*coefRotation);
-    bot.motorRun(M2,-motorSpeed*coefRotation);
+    bot.motorRun(MoteurAvant,-motorSpeed*coefRotation);
+    bot.motorRun(MoteurArriere,-motorSpeed*coefRotation);
     sleep(temps90deg)
     changeDirection(1)
 
 #avancer tout droit
 def avance(s=0.050):
     if not obstacleFront() :
-        bot.motorRun(M1,motorSpeed+coefCorection);
-        bot.motorRun(M2,-(motorSpeed-coefCorection));
+        bot.motorRun(MoteurAvant,motorSpeed+coefCorection);
+        bot.motorRun(MoteurArriere,-(motorSpeed-coefCorection));
         sleep(s)
     else:
         stop()
 
 #stop
 def stop():
-    bot.motorRun(M1,0);
-    bot.motorRun(M2,-(0));
+    bot.motorRun(MoteurAvant,0);
+    bot.motorRun(MoteurArriere,-(0));
 
 
 
