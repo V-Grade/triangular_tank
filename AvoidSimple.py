@@ -41,8 +41,11 @@ bot.start('/dev/ttyUSB0')
 
 #lecture des capteurs ultrasonic
 def ReadUltra():
-    bot.ultrasonicSensorRead(UtraSonicFrontal,onReadFront);
-    bot.ultrasonicSensorRead(UtraSonicLateral,onReadLateral);
+    print 'reading'
+    print 'front'
+    bot.ultrasonicSensorRead(7,onReadFront);
+    print 'lateral'
+    bot.ultrasonicSensorRead(4,onReadLateral);
 
 #r?cup?ration de la valeur de distance front
 def onReadFront(v):
@@ -122,7 +125,7 @@ def Tourne():
 if __name__ == '__main__':
 
     print 'initialisation'
-    while 1:
+    while not bot.exiting:
         #lecture des capteurs de distances
         print 'ReadUltra'
         ReadUltra()
@@ -139,6 +142,6 @@ if __name__ == '__main__':
             print 'avance'
             avance()
 
-        print 'signal' 
+        print 'signal'
         signal.signal(signal.SIGINT, signal_handler)
 
