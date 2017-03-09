@@ -18,7 +18,7 @@ UtraSonicFrontal = 7
 UtraSonicLateral = 4
 
 #temps
-temps90deg = 0.500
+temps90deg = 0.5
 
 #distances
 distanceFront = 0
@@ -31,17 +31,13 @@ def signal_handler(signal, frame):
     print('You pressed Ctrl+C!')
     bot.motorRun(M1,0);
     bot.motorRun(M2,0);
-    sleep(0.05)
+    sleep(0.1)
     bot.exiting=True
     quit()
 
-
+print('init')
 bot = MegaPi()
 bot.start('/dev/ttyUSB0')
-
-
-#signal.pause()
-
 
 #lecture des capteurs ultrasonic
 def ReadUltra():
@@ -128,8 +124,9 @@ if __name__ == '__main__':
     print 'initialisation'
     while 1:
         #lecture des capteurs de distances
+        print 'ReadUltra'
         ReadUltra()
-
+    
         # rien a droite lord du d?placement vers l'Ouest
         if (not obstacleLateral() and direction == 4 ):
             avance()
@@ -139,7 +136,9 @@ if __name__ == '__main__':
             Tourne()
         # sinon
         else:
+            print 'avance'
             avance()
 
+        print 'signal' 
         signal.signal(signal.SIGINT, signal_handler)
 
