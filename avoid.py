@@ -28,35 +28,44 @@ def signal_handler(signal, frame):
     quit()
 
 
+def testUtrasonic():
+
+	while 1:
+	   bot.ultrasonicSensorRead(7,onReadFront);
+           bot.ultrasonicSensorRead(4,onReadSide);
+	   print frontDistance
+	   print sideDistance
+	   print 'again'
+	   signal.signal(signal.SIGINT, signal_handler)
+
 def running():
     
-        print("Press CTRL-C to stop.")
+	print("Press CTRL-C to stop.")
         while 1:
 	    
-            bot.ultrasonicSensorRead(7,onReadFront);
-	    bot.ultrasonicSensorRead(4,onReadSide);
-	    print ('UltrasonicSensors ON')
 	    signal.signal(signal.SIGINT, signal_handler)
+	    bot.ultrasonicSensorRead(7,onReadFront);
+            bot.ultrasonicSensorRead(4,onReadSide);
 
             print frontDistance
 	    print sideDistance
             if frontDistance > 20:
-                bot.motorRun(M1,150);
-                bot.motorRun(M2,-150);
-		sleep(0.1);
+                 bot.motorRun(M1,200);
+                 bot.motorRun(M2,-200);
+		 sleep(0.1);
             
             elif frontDistance < 20 and sideDistance > 20: 
-                bot.motorRun(M1,0);
-                bot.motorRun(M2,0);
-	        bot.motorRun(M1,-100);
-                bot.motorRun(M2,-100);
-		sleep(0.1);
-	    elif frontDistance < 20 and sideDistance < 20:
-		bot.motorRun(M1,0);
-                bot.motorRun(M2,0); 
-		bot.motorRun(M1,100);
-                bot.motorRun(M2,100);
-		sleep(0.1);
+                 bot.motorRun(M1,0);
+                 bot.motorRun(M2,0);
+	         bot.motorRun(M1,-100);
+                 bot.motorRun(M2,-100);
+		 sleep(0.1);
+	    else frontDistance < 20 and sideDistance < 20:
+		 bot.motorRun(M1,0);
+                 bot.motorRun(M2,0); 
+		 bot.motorRun(M1,100);
+                 bot.motorRun(M2,100);
+		 sleep(0.1);
 
            
 
@@ -72,7 +81,7 @@ if __name__ == '__main__':
     print 'motors on run'
     
     try:
-        running()
+        testUtrasonic()
         
     except KeyboardInterrupt:
         print erreur
