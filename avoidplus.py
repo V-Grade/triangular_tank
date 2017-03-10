@@ -32,7 +32,7 @@ def turnLeft():
     print 'gauche'
     bot.motorRun(M1,100);
     bot.motorRun(M2,100);
-    sleep(1.350)
+    sleep(1.400)
     changeDirection(-1)
 
 #tourner de 90? a droite
@@ -40,7 +40,7 @@ def turnRight():
     print 'droite'
     bot.motorRun(M1,-100);
     bot.motorRun(M2,-100);
-    sleep(1.350)
+    sleep(1.400)
     changeDirection(1)
 
 #avancer tout droit
@@ -69,11 +69,11 @@ def changeDirection(d):
 
 #d?tection d'obstacle frontale
 def obstacleFront():
-    return (front < 40) 
+    return (front < 25) 
 
 #d?tection d'obstacle lat?rale
 def obstacleLateral():
-    return (side < 40)
+    return (side < 10)
 
 
 #tourner dans la meilleur direction
@@ -91,32 +91,43 @@ def Tourne():
 
 
 def running():
+    print("Press CTRL-C to stop.")
+    while front==0:
+    	signal.signal(signal.SIGINT, signal_handler)
+    	bot.ultrasonicSensorRead(7,onReadFront);
+    	sleep(0.05)
+    	bot.ultrasonicSensorRead(4,onReadSide);
+    	sleep(0.05)
+    	print 'front distance:'
+    	print front
+    	print 'side distance'
+    	print side
+    	sleep(0.1)
+    sleep(1)
+    print("Press CTRL-C to stop.")
+    while 1:
     
-	print("Press CTRL-C to stop.")
-	while 1:
-	   
-
-		signal.signal(signal.SIGINT, signal_handler)
-		bot.ultrasonicSensorRead(7,onReadFront);
-		sleep(0.05)
-		bot.ultrasonicSensorRead(4,onReadSide);
-		sleep(0.05)
-		print 'front distance:'
-		print front
-		print 'side distance'
-		print side
-		sleep(0.1)
+        signal.signal(signal.SIGINT, signal_handler)
+        bot.ultrasonicSensorRead(7,onReadFront);
+        sleep(0.05)
+        bot.ultrasonicSensorRead(4,onReadSide);
+        sleep(0.05)
+        print 'front distance:'
+        print front
+        print 'side distance'
+        print side
+        sleep(0.1)
 
         # rien a droite lord du d?placement vers l'Ouest
-		if (not obstacleLateral() and direction == 4 ):
-			avance()
-			turnRight()
+        if (not obstacleLateral() and direction == 4 ):
+	        avance()
+	        turnRight()
         # qq chose devant
-		elif (obstacleFront()):
-			Tourne()
-		# sinon
-		else:
-			avance()
+        elif (obstacleFront()):
+	        Tourne()
+        # sinon
+        else:
+	        avance()
 
 
 if __name__ == '__main__':
