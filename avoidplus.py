@@ -32,7 +32,7 @@ def turnLeft():
     print 'gauche'
     bot.motorRun(M1,100);
     bot.motorRun(M2,100);
-    sleep(1.400)
+    sleep(1.300)
     changeDirection(-1)
 
 #tourner de 90? a droite
@@ -40,7 +40,7 @@ def turnRight():
     print 'droite'
     bot.motorRun(M1,-100);
     bot.motorRun(M2,-100);
-    sleep(1.400)
+    sleep(1.300)
     changeDirection(1)
 
 #avancer tout droit
@@ -69,11 +69,11 @@ def changeDirection(d):
 
 #d?tection d'obstacle frontale
 def obstacleFront():
-    return (front < 25) 
+    return (front < 20) 
 
 #d?tection d'obstacle lat?rale
 def obstacleLateral():
-    return (side < 10)
+    return (side < 20)
 
 
 #tourner dans la meilleur direction
