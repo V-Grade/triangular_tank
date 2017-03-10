@@ -129,7 +129,7 @@ if __name__ == '__main__':
         
         bot.ultrasonicSensorRead(7,onReadFront);
         bot.ultrasonicSensorRead(4,onReadLateral);
-        bot.gyroRead(X,onReadXgyro)        
+        bot.gyroRead('X',onReadXgyro)        
         sleep(0.1)
         print "f:"+distanceFront+" l:"+distanceLateral +" g:"+Xgyro
     
