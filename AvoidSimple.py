@@ -18,7 +18,7 @@ UtraSonicFrontal = 7
 UtraSonicLateral = 4
 
 #temps
-temps90deg = 0.5
+temps90deg = 1.350
 
 #distances
 distanceFront = 0
