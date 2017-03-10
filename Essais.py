@@ -55,12 +55,3 @@ if __name__ == '__main__':
     
     print 'stop'
     stop()
-    
-    print 'signal'
-    signal.signal(signal.SIGINT, signal_handler)
-    
-    bot.motorRun(M1,0);
-    bot.motorRun(M2,0);
-    sleep(0.1)
-    bot.exiting=True
-    quit()
