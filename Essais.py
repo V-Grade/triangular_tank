@@ -28,6 +28,11 @@ def turnRight():
     bot.motorRun(MoteurAvant,-motorSpeed*coefRotation);
     bot.motorRun(MoteurArriere,-motorSpeed*coefRotation);
     sleep(temps90deg)
+    
+#stop
+def stop():
+    bot.motorRun(MoteurAvant,0);
+    bot.motorRun(MoteurArriere,-(0));
 
 
 if __name__ == '__main__':
@@ -36,13 +41,20 @@ if __name__ == '__main__':
     bot = MegaPi()
     bot.start('/dev/ttyUSB0')
 
-    sleep(1);
+    sleep(1)
     
     print 'tourne a gauche'
     turnLeft()
+    
+    sleep(1)
 
     print 'tourne a droite'
     turnRight()
+    
+    sleep(1)
+    
+    print 'stop'
+    stop()
     
     print 'signal'
     signal.signal(signal.SIGINT, signal_handler)
