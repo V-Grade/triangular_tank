@@ -128,7 +128,11 @@ if __name__ == '__main__':
         #lecture des capteurs de distances
         
         bot.ultrasonicSensorRead(7,onReadFront);
+        sleep(0.1)
+        print "f:"+distanceFront+" l:"+distanceLateral +" g:"+Xgyro
         bot.ultrasonicSensorRead(4,onReadLateral);
+        sleep(0.1)
+        print "f:"+distanceFront+" l:"+distanceLateral +" g:"+Xgyro
         bot.gyroRead('X',onReadXgyro)        
         sleep(0.1)
         print "f:"+distanceFront+" l:"+distanceLateral +" g:"+Xgyro
