@@ -23,7 +23,6 @@ temps90deg = 0.5
 #distances
 distanceFront = 0
 distanceLateral = 0
-Xgyro = 0
 
 #Directions de 1 a 4 dans le sens des aiguilles d'une montre
 direction = 1 
@@ -43,11 +42,6 @@ def onReadFront(v):
     global distanceFront
     distanceFront = v
     
-
-#r?cup?ration de la valeur de distance Lat?rale
-def onReadLateral(v):
-    global Xgyro
-    Xgyro = v
 
 #r?cup?ration de la valeur de distance Lat?rale
 def onReadLateral(v):
@@ -71,11 +65,11 @@ def turnRight():
     changeDirection(1)
 
 #avancer tout droit
-def avance(s=0.1):
+def avance():
     if not obstacleFront() :
         bot.motorRun(MoteurAvant,motorSpeed+coefCorection);
         bot.motorRun(MoteurArriere,-(motorSpeed-coefCorection));
-        sleep(s)
+        sleep(0.1)
     else:
         stop()
 
@@ -121,33 +115,31 @@ if __name__ == '__main__':
     print('init')
     bot = MegaPi()
     bot.start('/dev/ttyUSB0')
-    #bot.start()
     print 'initialisation'
     sleep(1)
-    print 'init done'
-    while 1:
+    while True:
+
         #lecture des capteurs de distances
         print "*********"
-        print "f:"+distanceFront+" l:"+distanceLateral +" g:"+Xgyro
         bot.ultrasonicSensorRead(7,onReadFront);
-        print "f:"+distanceFront+" l:"+distanceLateral +" g:"+Xgyro
+        sleep(0.1)
+        print "f:"+distanceFront+" l:"+distanceLateral
         bot.ultrasonicSensorRead(4,onReadLateral);
-        print "f:"+distanceFront+" l:"+distanceLateral +" g:"+Xgyro
-        #bot.gyroRead('X',onReadXgyro)        
-        print "f:"+distanceFront+" l:"+distanceLateral +" g:"+Xgyro
-    
+        sleep(0.1)
+        print "f:"+distanceFront+" l:"+distanceLateral
+        
         # rien a droite lord du d?placement vers l'Ouest
+
         if (not obstacleLateral() and direction == 4 ):
             avance()
             turnRight()
         # qq chose devant
+
         elif (obstacleFront()):
             Tourne()
         # sinon
         else:
-            print 'avance'
-            #avance()
+            avance()
 
-        print 'signal'
         signal.signal(signal.SIGINT, signal_handler)
 
