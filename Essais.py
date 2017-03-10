@@ -15,7 +15,7 @@ MoteurAvant = M1
 MoteurArriere = M2
 
 #temps
-temps90deg = 1.300
+temps90deg = 1.350
 
 #tourner de 90? a gauche
 def turnLeft():
