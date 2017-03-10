@@ -22,12 +22,6 @@ def turnLeft():
     bot.motorRun(MoteurAvant,motorSpeed*coefRotation);
     bot.motorRun(MoteurArriere,motorSpeed*coefRotation);
     sleep(temps90deg)
-
-#tourner de 90? a droite
-def turnRight():
-    bot.motorRun(MoteurAvant,-motorSpeed*coefRotation);
-    bot.motorRun(MoteurArriere,-motorSpeed*coefRotation);
-    sleep(temps90deg)
     
 #stop
 def stop():
@@ -45,11 +39,6 @@ if __name__ == '__main__':
     
     print 'tourne a gauche'
     turnLeft()
-    
-    sleep(1)
-
-    print 'tourne a droite'
-    turnRight()
     
     sleep(1)
     
