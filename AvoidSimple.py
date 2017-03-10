@@ -6,7 +6,7 @@ import signal
 import sys
 
 # vitesses moteur
-motorSpeed = 150 
+motorSpeed = 200 
 coefCorection = 0.0 #correction de trajectiore
 coefRotation = 0.5 #reduction de la vitesse pdt la rotation
 
@@ -116,13 +116,14 @@ if __name__ == '__main__':
     bot = MegaPi()
     bot.start('/dev/ttyUSB0')
     print 'initialisation'
-    stop()
     sleep(1)
-    
+    bot.motorRun(M1,0);
+    bot.motorRun(M2,0);
+
     while True:
 
         #lecture des capteurs de distances
-        print "*********";
+        print "*********"
 
         bot.ultrasonicSensorRead(7,onReadFront)
         sleep(0.1)
