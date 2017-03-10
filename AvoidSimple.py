@@ -6,7 +6,7 @@ import signal
 import sys
 
 # vitesses moteur
-motorSpeed = 50 
+motorSpeed = 150 
 coefCorection = 0.0 #correction de trajectiore
 coefRotation = 0.5 #reduction de la vitesse pdt la rotation
 
@@ -116,7 +116,9 @@ if __name__ == '__main__':
     bot = MegaPi()
     bot.start('/dev/ttyUSB0')
     print 'initialisation'
+    stop()
     sleep(1)
+    
     while True:
 
         #lecture des capteurs de distances
