@@ -118,29 +118,24 @@ if __name__ == '__main__':
     sleep(1)
     bot.motorRun(M1,0);
     bot.motorRun(M2,0);
-
     while True:
-
         signal.signal(signal.SIGINT, signal_handler)
         bot.ultrasonicSensorRead(7,onReadFront);
         sleep(0.05)
         bot.ultrasonicSensorRead(4,onReadSide);
         sleep(0.05)
         print "f:"+distanceFront+" l:"+distanceLateral
-
-        
         # rien a droite lord du d?placement vers l'Ouest
-
         if (not obstacleLateral() and direction == 4 ):
             avance()
             turnRight()
         # qq chose devant
-
         elif (obstacleFront()):
             Tourne()
         # sinon
         else:
             avance()
 
+    print 'end'
         
 
