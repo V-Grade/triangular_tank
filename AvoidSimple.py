@@ -120,11 +120,13 @@ if __name__ == '__main__':
     while True:
 
         #lecture des capteurs de distances
-        print "*********"
-        bot.ultrasonicSensorRead(7,onReadFront);
+        print "*********";
+
+        bot.ultrasonicSensorRead(7,onReadFront)
         sleep(0.1)
         print "f:"+distanceFront+" l:"+distanceLateral
-        bot.ultrasonicSensorRead(4,onReadLateral);
+        
+        bot.ultrasonicSensorRead(4,onReadLateral)
         sleep(0.1)
         print "f:"+distanceFront+" l:"+distanceLateral
         
