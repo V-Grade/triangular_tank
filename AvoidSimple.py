@@ -112,7 +112,6 @@ def Tourne():
 
 
 if __name__ == '__main__':
-    print('init')
     bot = MegaPi()
     bot.start('/dev/ttyUSB0')
     print 'initialisation'
@@ -122,16 +121,13 @@ if __name__ == '__main__':
 
     while True:
 
-        #lecture des capteurs de distances
-        print "*********"
+        signal.signal(signal.SIGINT, signal_handler)
+        bot.ultrasonicSensorRead(7,onReadFront);
+        sleep(0.05)
+        bot.ultrasonicSensorRead(4,onReadSide);
+        sleep(0.05)
+        print "f:"+distanceFront+" l:"+distanceLateral
 
-        bot.ultrasonicSensorRead(7,onReadFront)
-        sleep(0.1)
-        print "f:"+distanceFront+" l:"+distanceLateral
-        
-        bot.ultrasonicSensorRead(4,onReadLateral)
-        sleep(0.1)
-        print "f:"+distanceFront+" l:"+distanceLateral
         
         # rien a droite lord du d?placement vers l'Ouest
 
@@ -146,5 +142,5 @@ if __name__ == '__main__':
         else:
             avance()
 
-        signal.signal(signal.SIGINT, signal_handler)
+        
 
