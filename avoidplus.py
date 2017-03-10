@@ -32,7 +32,7 @@ def turnLeft():
     print 'gauche'
     bot.motorRun(M1,100);
     bot.motorRun(M2,100);
-    sleep(1.300)
+    sleep(1.150)
     changeDirection(-1)
 
 #tourner de 90? a droite
@@ -40,15 +40,15 @@ def turnRight():
     print 'droite'
     bot.motorRun(M1,-100);
     bot.motorRun(M2,-100);
-    sleep(1.300)
+    sleep(1.150)
     changeDirection(1)
 
 #avancer tout droit
-def avance():
+def avance(s=0.1):
     if not obstacleFront() :
         bot.motorRun(M1,100);
         bot.motorRun(M2,-100);
-        sleep(0.1)
+        sleep(s)
     else:
         stop()
 
@@ -120,7 +120,7 @@ def running():
 
         # rien a droite lord du d?placement vers l'Ouest
         if (not obstacleLateral() and direction == 4 ):
-	        avance()
+	        avance(0.8)
 	        turnRight()
         # qq chose devant
         elif (obstacleFront()):

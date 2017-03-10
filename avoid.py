@@ -43,6 +43,22 @@ def testCapteurSide ():
            print side
 	   sleep(0.1)
 
+def pivoter():
+    print 'tourner a gauche'
+    bot.motorRun(M1,-100);
+    bot.motorRun(M2,-100);
+    sleep(1.355)
+    print 'arret des moteurs'
+    bot.motorRun(M1,0);
+    bot.motorRun(M2,0);
+    sleep(2)
+    print 'tourner a droite'
+    bot.motorRun(M1,100);
+    bot.motorRun(M2,100);
+    sleep(1.355)
+    print 'arret des moteurs'
+    bot.motorRun(M1,0);
+    bot.motorRun(M2,0);
 
 def running():
     
@@ -61,20 +77,20 @@ def running():
 	   print side
 	   sleep(0.1)
 
-	   if front > 30:
+	   if front > 50:
 		print 'aller tout droit'
 		bot.motorRun(M1,100);
 		bot.motorRun(M2,-100);
 		sleep(0.1)
             
-	   elif front < 30 and side > 30:
+	   elif front < 50 and side > 90:
 		print 'tourner a droite' 
 		bot.motorRun(M1,0);
 		bot.motorRun(M2,0);
 		bot.motorRun(M1,-100);
 		bot.motorRun(M2,-100);
 		sleep(0.1)
-	   elif front < 30 and side < 30:
+	   elif front < 50 and side < 90:
 		print 'tourner a gauche'
 		bot.motorRun(M1,0);
 		bot.motorRun(M2,0);
