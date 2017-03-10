@@ -120,7 +120,8 @@ def Tourne():
 if __name__ == '__main__':
     print('init')
     bot = MegaPi()
-    bot.start('/dev/ttyUSB0')
+    #bot.start('/dev/ttyUSB0')
+    bot.start()
     print 'initialisation'
     sleep(1)
     print 'init done'
