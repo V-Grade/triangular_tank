@@ -5,18 +5,18 @@ import signal
 import sys
 
 
-frontDistance = 0
-sideDistance = 0
+front = 0
+side = 0
 
 
 def onReadFront(v):
-    global frontDistance
-    frontDistance = v
+    global front
+    front = v
 	#print "distance:"+str(v)+" cm";
 
 def onReadSide(u):
-    global sideDistance
-    sideDistance = u
+    global side
+    side = u
 
 
 def signal_handler(signal, frame):
@@ -27,45 +27,60 @@ def signal_handler(signal, frame):
     bot.exiting=True
     quit()
 
-
-def testUtrasonic():
-
+def testCapteurFront ():
+	
 	while 1:
-	   bot.ultrasonicSensorRead(7,onReadFront);
-           bot.ultrasonicSensorRead(4,onReadSide);
-	   print frontDistance
-	   print sideDistance
-	   print 'again'
 	   signal.signal(signal.SIGINT, signal_handler)
+	   bot.ultrasonicSensorRead(7,onReadFront);
+	   print front
+	   sleep(0.1)
+
+def testCapteurSide ():
+
+        while 1:
+           signal.signal(signal.SIGINT, signal_handler)
+           bot.ultrasonicSensorRead(4,onReadSide);
+           print side
+	   sleep(0.1)
+
 
 def running():
     
 	print("Press CTRL-C to stop.")
         while 1:
-	    
-	    signal.signal(signal.SIGINT, signal_handler)
-	    bot.ultrasonicSensorRead(7,onReadFront);
-            bot.ultrasonicSensorRead(4,onReadSide);
+	   
 
-            print frontDistance
-	    print sideDistance
-            if frontDistance > 20:
-                 bot.motorRun(M1,200);
-                 bot.motorRun(M2,-200);
-		 sleep(0.1);
+	   signal.signal(signal.SIGINT, signal_handler)
+	   bot.ultrasonicSensorRead(7,onReadFront);
+	   sleep(0.05)
+	   bot.ultrasonicSensorRead(4,onReadSide);
+	   sleep(0.05)
+	   print 'front distance:'
+	   print front
+	   print 'side distance'
+	   print side
+	   sleep(0.1)
+
+	   if front > 30:
+		print 'aller tout droit'
+		bot.motorRun(M1,100);
+		bot.motorRun(M2,-100);
+		sleep(0.1)
             
-            elif frontDistance < 20 and sideDistance > 20: 
-                 bot.motorRun(M1,0);
-                 bot.motorRun(M2,0);
-	         bot.motorRun(M1,-100);
-                 bot.motorRun(M2,-100);
-		 sleep(0.1);
-	    else frontDistance < 20 and sideDistance < 20:
-		 bot.motorRun(M1,0);
-                 bot.motorRun(M2,0); 
-		 bot.motorRun(M1,100);
-                 bot.motorRun(M2,100);
-		 sleep(0.1);
+	   elif front < 30 and side > 30:
+		print 'tourner a droite' 
+		bot.motorRun(M1,0);
+		bot.motorRun(M2,0);
+		bot.motorRun(M1,-100);
+		bot.motorRun(M2,-100);
+		sleep(0.1)
+	   elif front < 30 and side < 30:
+		print 'tourner a gauche'
+		bot.motorRun(M1,0);
+		bot.motorRun(M2,0);
+		bot.motorRun(M1,100);
+		bot.motorRun(M2,100);
+		sleep(0.1)
 
            
 
@@ -75,13 +90,13 @@ if __name__ == '__main__':
     bot = MegaPi()
     bot.start('/dev/ttyUSB0')
     print 'initialisation'
-    sleep(1);
+    sleep(1)
     bot.motorRun(M1,0);
     bot.motorRun(M2,0);
     print 'motors on run'
     
     try:
-        testUtrasonic()
+        running()
         
     except KeyboardInterrupt:
         print erreur
