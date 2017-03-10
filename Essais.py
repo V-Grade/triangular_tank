@@ -15,13 +15,13 @@ MoteurAvant = M1
 MoteurArriere = M2
 
 #temps
-temps90deg = 1.250
+temps90deg = 1.0
 
 #tourner de 90? a gauche
-#def turnLeft():
-#    bot.motorRun(MoteurAvant,motorSpeed*coefRotation);
-#    bot.motorRun(MoteurArriere,motorSpeed*coefRotation);
-#    sleep(temps90deg)
+def turnLeft():
+    bot.motorRun(MoteurAvant,motorSpeed*coefRotation);
+    bot.motorRun(MoteurArriere,motorSpeed*coefRotation);
+    sleep(temps90deg)
     
     
 #tourner de 90? a droite
@@ -44,10 +44,10 @@ if __name__ == '__main__':
 
     sleep(1)
     
-#    print 'tourne a gauche'
-#    turnLeft()
+    print 'tourne a gauche'
+    turnLeft()
     
-#    sleep(1)
+    sleep(1)
     
     print 'tourne a droite'
     turnRight()
