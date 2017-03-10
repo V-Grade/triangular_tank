@@ -126,15 +126,13 @@ if __name__ == '__main__':
     print 'init done'
     while 1:
         #lecture des capteurs de distances
-        
-        bot.ultrasonicSensorRead(7,onReadFront);
-        sleep(0.1)
+        print "*********"
         print "f:"+distanceFront+" l:"+distanceLateral +" g:"+Xgyro
-        bot.ultrasonicSensorRead(4,onReadLateral);
-        sleep(0.1)
+        #bot.ultrasonicSensorRead(7,onReadFront);
+        print "f:"+distanceFront+" l:"+distanceLateral +" g:"+Xgyro
+        #bot.ultrasonicSensorRead(4,onReadLateral);
         print "f:"+distanceFront+" l:"+distanceLateral +" g:"+Xgyro
         bot.gyroRead('X',onReadXgyro)        
-        sleep(0.1)
         print "f:"+distanceFront+" l:"+distanceLateral +" g:"+Xgyro
     
         # rien a droite lord du d?placement vers l'Ouest
