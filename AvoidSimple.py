@@ -23,6 +23,7 @@ temps90deg = 0.5
 #distances
 distanceFront = 0
 distanceLateral = 0
+Xgyro = 0
 
 #Directions de 1 a 4 dans le sens des aiguilles d'une montre
 direction = 1 
@@ -42,6 +43,11 @@ def onReadFront(v):
     global distanceFront
     distanceFront = v
     
+
+#r?cup?ration de la valeur de distance Lat?rale
+def onReadLateral(v):
+    global Xgyro
+    Xgyro = v
 
 #r?cup?ration de la valeur de distance Lat?rale
 def onReadLateral(v):
@@ -120,13 +126,13 @@ if __name__ == '__main__':
     print 'init done'
     while 1:
         #lecture des capteurs de distances
-        print 'ReadUltra'
+        
         bot.ultrasonicSensorRead(7,onReadFront);
-        sleep(0.1)
-        print 'lateral'
         bot.ultrasonicSensorRead(4,onReadLateral);
+        bot.gyroRead(X,onReadXgyro)        
         sleep(0.1)
-
+        print "f:"+distanceFront+" l:"+distanceLateral +" g:"+Xgyro
+    
         # rien a droite lord du d?placement vers l'Ouest
         if (not obstacleLateral() and direction == 4 ):
             avance()
@@ -137,7 +143,7 @@ if __name__ == '__main__':
         # sinon
         else:
             print 'avance'
-            avance()
+            #avance()
 
         print 'signal'
         signal.signal(signal.SIGINT, signal_handler)
