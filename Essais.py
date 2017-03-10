@@ -47,12 +47,8 @@ if __name__ == '__main__':
     print 'tourne a gauche'
     turnLeft()
     
-    sleep(1)
-    
     print 'tourne a droite'
     turnRight()
-    
-    sleep(1)
     
     print 'stop'
     stop()
