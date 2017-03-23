@@ -79,20 +79,21 @@ def obstacleLateral():
 
 #tourner dans la meilleur direction
 def Tourne():
-    global varyx
+    
     # tourne a gauche si on est dans la direction Nord
     if direction == 1 :
         print 'gauche d1' 
         turnLeft()
     # fait demis tour si on est dans la direction Ouest
     elif (direction == 4 and varyx == 0 ):
-        print 'demistours d4 x0' + varyx
+        print 'demistours d4 x0'
         turnRight()
         turnRight()
+        global varyx
         varyx = 1
     #tourne a gauche si on a deja fait demis tour
     elif (direction == 4 and varyx == 1 ):
-        print 'gauche d4 x1' + varyx 
+        print 'gauche d4 x1' 
         turnLeft()
 
     #tourne a gauche si on est dans la direction Est
@@ -102,7 +103,7 @@ def Tourne():
 
 
 def running():
-    global varyx
+    
     print("Press CTRL-C to stop.")
     while front==0:
     	signal.signal(signal.SIGINT, signal_handler)
@@ -134,7 +135,7 @@ def running():
         if (not obstacleLateral() and (direction == 4 or direction == 3)):
 	        avance(0.8)
 	        turnRight()
-            
+            global varyx
 	        varyx = 0
         # qq chose devant
         elif (obstacleFront()):
