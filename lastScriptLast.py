@@ -133,17 +133,17 @@ def running():
 
         # rien a droite lord du d?placement vers l'Ouest
         if (not obstacleLateral() and (direction == 4 or direction == 3)):
-	        avance(0.8)
-	        turnRight()
+            avance(0.8)
+            turnRight()
             global varyx
-	        varyx = 0
+            varyx = 0
         # qq chose devant
         elif (obstacleFront()):
-	        Tourne()
+            Tourne()
 
         # sinon
         else:
-	        avance()
+            avance()
 
 
 if __name__ == '__main__':
