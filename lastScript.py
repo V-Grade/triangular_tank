@@ -83,12 +83,12 @@ def Tourne():
     if direction == 1 :
         turnLeft()
     # fait demis tour si on est dans la direction Ouest
-    elif (direction == 4 and x=0 ):
+    elif (direction == 4 and x == 0 ):
         turnRight()
         turnRight()
         x = 1
-    #tourne a gauche si on a déjà fait demis tour
-    elif (direction == 4 and x=1 ):
+    #tourne a gauche si on a fait demis tour
+    elif (direction == 4 and x == 1 ):
         turnLeft()
 
     #tourne a gauche si on est dans la direction Est
@@ -128,7 +128,7 @@ def running():
         if (not obstacleLateral() and (direction == 4 or direction == 3)):
 	        avance(0.8)
 	        turnRight()
-            x = 0
+            	x = 0
         # qq chose devant
         elif (obstacleFront()):
 	        Tourne()
