@@ -79,6 +79,7 @@ def obstacleLateral():
 
 #tourner dans la meilleur direction
 def Tourne():
+    global x
     # tourne a gauche si on est dans la direction Nord
     if direction == 1 :
         print 'gauche d1' 
