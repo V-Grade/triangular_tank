@@ -102,6 +102,7 @@ def Tourne():
 
 
 def running():
+    global x
     print("Press CTRL-C to stop.")
     while front==0:
     	signal.signal(signal.SIGINT, signal_handler)
@@ -133,6 +134,7 @@ def running():
         if (not obstacleLateral() and (direction == 4 or direction == 3)):
 	        avance(0.8)
 	        turnRight()
+            
 	        x = 0
         # qq chose devant
         elif (obstacleFront()):
