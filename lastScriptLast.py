@@ -30,6 +30,9 @@ def signal_handler(signal, frame):
 
 #tourner de 90? a gauche
 def turnLeft():
+    bot.motorRun(M1,0);
+    bot.motorRun(M2,0);
+    sleep(0.5)
     print 'gauche'
     bot.motorRun(M1,100);
     bot.motorRun(M2,100);
@@ -38,6 +41,9 @@ def turnLeft():
 
 #tourner de 90? a droite
 def turnRight():
+    bot.motorRun(M1,0);
+    bot.motorRun(M2,0);
+    sleep(0.5)
     print 'droite'
     bot.motorRun(M1,-100);
     bot.motorRun(M2,-100);
