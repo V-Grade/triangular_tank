@@ -79,6 +79,7 @@ def obstacleLateral():
 
 #tourner dans la meilleur direction
 def Tourne():
+    global x
     # tourne a gauche si on est dans la direction Nord
     if direction == 1 :
         turnLeft()
@@ -86,7 +87,7 @@ def Tourne():
     elif (direction == 4 and x == 0 ):
         turnRight()
         turnRight()
-        x = 1
+    
     #tourne a gauche si on a fait demis tour
     elif (direction == 4 and x == 1 ):
         turnLeft()
@@ -97,6 +98,7 @@ def Tourne():
 
 
 def running():
+    global x
     print("Press CTRL-C to stop.")
     while front==0:
     	signal.signal(signal.SIGINT, signal_handler)
