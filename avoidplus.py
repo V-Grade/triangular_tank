@@ -95,9 +95,10 @@ def running():
     i=0
     while front==0:
     	signal.signal(signal.SIGINT, signal_handler)
-        i=i+1
-        bot.rgbLedSetColor ( 6, 1, i, 200, 10, 10 )
-        if(i>=12): i=1;
+    	print 'light:'
+    	i=i+1
+    	bot.rgbLedSetColor(6, 1, i, 200, 10, 10)
+    	if(i>=12): i=1;
     	bot.ultrasonicSensorRead(7,onReadFront);
     	sleep(0.05)
     	bot.ultrasonicSensorRead(4,onReadSide);
